@@ -1,24 +1,31 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import "./style.css";
+// Get references to the HTML elements
+const dayElement = document.getElementById("day");
+const currentDateElement = document.getElementById("currentDate");
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// Function to update the day of the week
+function updateDayOfWeek() {
+	const daysOfWeek = [
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+	];
+	const today = new Date();
+	const dayOfWeek = daysOfWeek[today.getUTCDay()];
+	dayElement.textContent = dayOfWeek;
+}
 
-setupCounter(document.querySelector('#counter'))
+// Function to update the current UTC time
+function updateCurrentTime() {
+	const today = new Date();
+	const utcTime = today.toUTCString();
+	currentDateElement.textContent = utcTime;
+}
+
+// Call the functions to update the day of the week and current UTC time
+updateDayOfWeek();
+updateCurrentTime();
